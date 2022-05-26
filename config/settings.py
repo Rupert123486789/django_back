@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#+x2u!380&o3$#3^lh$z3vdb=$c-txduhv%qdii3vl=s2!6zbz'
+# SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -173,12 +173,12 @@ REST_FRAMEWORK = {
 
 }
 
-ALLOWED_HOSTS = ['*']
+
 
 
 from decouple import config
 
-# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 # cast=bool 이 없으면 False 를 문자열로 인식하게됨.
 DEBUG = config('DEBUG', default=False, cast=bool)
 

@@ -33,7 +33,7 @@ outcome==1.1.0
 parso==0.8.3
 pickleshare==0.7.5
 prompt-toolkit==3.0.29
-# psycopg2==2.9.3
+psycopg2==2.9.3
 pure-eval==0.2.2
 pycparser==2.21
 Pygments==2.12.0
