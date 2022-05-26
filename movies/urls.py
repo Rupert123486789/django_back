@@ -14,7 +14,7 @@ urlpatterns = [
     path('<int:movie_pk>/movie_comments/<int:movie_comment_pk>/', views.movie_comment_ud),
     path('all_movies/<type>/',views.get_all_movies),
     path('index/<username>/', views.movie_index),
-    path('recommend/sun/', views.sun_recommend), 
+    # path('recommend/sun/', views.sun_recommend), 
     path('recommend/like/<username>/', views.like_recommend),
     path('recommend/little_like/<username>/', views.little_like_recommend),
     path('recommend/color_test/<results>/', views.color_recommend),
