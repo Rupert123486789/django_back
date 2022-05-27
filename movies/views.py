@@ -16,7 +16,7 @@ from django.db.models import Count
 
 from datetime import datetime
 import random
-# from .crawling import now_altitude, lat, lng, address
+from .crawling import now_altitude, lat, lng, address
 
 
 User = get_user_model()
@@ -331,46 +331,46 @@ def movie_comment_ud(request, movie_pk, movie_comment_pk):
             return Response(data, status=status.HTTP_204_NO_CONTENT)
 
 
-# @api_view(['GET'])
-# def sun_recommend(request):
-#     sun_altitude = now_altitude  
+@api_view(['GET'])
+def sun_recommend(request):
+    sun_altitude = now_altitude  
     
 
-#     recommend_genres = []
-#     if -90 <= int(sun_altitude) < -60:
-#         recommend_genres = [27, 878, 53]
-#     elif -60 <= int(sun_altitude) < -30:
-#         recommend_genres = [10402, 9648, 10770]
-#     elif -30 <= int(sun_altitude) < -0:
-#         recommend_genres = [18, 36, 10749]
-#     elif 0 <= int(sun_altitude) < 30:
-#         recommend_genres = [12, 16, 14, 37]
-#     elif 30 <= int(sun_altitude) < 60:
-#         recommend_genres = [28, 35, 10751]
-#     elif 60 <= int(sun_altitude) <= 90:
-#         recommend_genres = [80, 99, 10752]
+    recommend_genres = []
+    if -90 <= int(sun_altitude) < -60:
+        recommend_genres = [27, 878, 53]
+    elif -60 <= int(sun_altitude) < -30:
+        recommend_genres = [10402, 9648, 10770]
+    elif -30 <= int(sun_altitude) < -0:
+        recommend_genres = [18, 36, 10749]
+    elif 0 <= int(sun_altitude) < 30:
+        recommend_genres = [12, 16, 14, 37]
+    elif 30 <= int(sun_altitude) < 60:
+        recommend_genres = [28, 35, 10751]
+    elif 60 <= int(sun_altitude) <= 90:
+        recommend_genres = [80, 99, 10752]
 
-#     recommend_movies = set()
-#     for recommend_genre in recommend_genres:
-#         try:
-#             genre = get_object_or_404(Genre, pk=recommend_genre)			
-#             movies = genre.genre_movies.all()
-#             recommend_movies.update(movies)
-#         except:
-#             continue
+    recommend_movies = set()
+    for recommend_genre in recommend_genres:
+        try:
+            genre = get_object_or_404(Genre, pk=recommend_genre)			
+            movies = genre.genre_movies.all()
+            recommend_movies.update(movies)
+        except:
+            continue
    
 
-#     # 현재 데이터가 적어서 추천해줄 장르가 5개가 안되면 오류남
-#     # 데이터 500개 받으면 해결될듯(추후 확인 필요)
-#     recommend_movies_random = random.sample(list(recommend_movies), 5)
-#     serializer1 = MovieSerializer(recommend_movies_random, many=True)
-#     info = {
-#         'latitude' : lat,
-#         'longitude' : lng,
-#         'address' : address
-#     }
-#     serializer2 = InfoSerializer(info)
-#     return Response([serializer1.data, serializer2.data])
+    # 현재 데이터가 적어서 추천해줄 장르가 5개가 안되면 오류남
+    # 데이터 500개 받으면 해결될듯(추후 확인 필요)
+    recommend_movies_random = random.sample(list(recommend_movies), 5)
+    serializer1 = MovieSerializer(recommend_movies_random, many=True)
+    info = {
+        'latitude' : lat,
+        'longitude' : lng,
+        'address' : address
+    }
+    serializer2 = InfoSerializer(info)
+    return Response([serializer1.data, serializer2.data])
 
 
 @api_view(['GET'])
